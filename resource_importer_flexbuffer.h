@@ -215,11 +215,10 @@ protected:
 
 		ClassDB::bind_method(D_METHOD("set_data", "data"), &FlexbuffersData::set_data);
 		ClassDB::bind_method(D_METHOD("get_data"), &FlexbuffersData::get_data);
-		ClassDB::bind_method(D_METHOD("set_flexbuffer", "json"), &FlexbuffersData::set_flexbuffers);
+		ClassDB::bind_method(D_METHOD("set_flexbuffer", "flexbuffers"), &FlexbuffersData::set_flexbuffers);
 		ClassDB::bind_method(D_METHOD("get_flexbuffer"), &FlexbuffersData::get_flexbuffers);
 
-		ADD_PROPERTY(PropertyInfo(Variant::NIL, "data", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_STORAGE | PROPERTY_USAGE_NIL_IS_VARIANT), "set_data", "get_data");
-		ADD_PROPERTY(PropertyInfo(Variant::POOL_BYTE_ARRAY, "flexbuffer", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_EDITOR), "set_flexbuffer", "get_flexbuffer");
+		ADD_PROPERTY(PropertyInfo(Variant::NIL, "data", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_EDITOR | PROPERTY_USAGE_STORAGE | PROPERTY_USAGE_NIL_IS_VARIANT), "set_data", "get_data");
 	}
 
 public:

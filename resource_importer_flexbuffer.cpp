@@ -70,11 +70,11 @@ int ResourceImporterFlexbuffers::get_preset_count() const {
 
 Error ResourceImporterFlexbuffers::import(const String &p_source_file, const String &p_save_path, const Map<StringName, Variant> &p_options, List<String> *r_platform_variants, List<String> *r_gen_files, Variant *r_metadata) {
 	FileAccess *file = FileAccess::create(FileAccess::ACCESS_RESOURCES);
-	Error err;
-	String json_string = file->get_file_as_string(p_source_file, &err);
-	ERR_FAIL_COND_V_MSG(err != OK, FAILED, "Can not open flexbuffer file.");
+	ERR_FAIL_COND_V(!file, FAILED);
+	Vector<uint8_t> array = file->get_file_as_array(p_source_file);
 	Ref<FlexbuffersData> flexbuffer_data;
 	flexbuffer_data.instance();
+	flexbuffer_data->set_flexbuffers(array);
 	Variant data = flexbuffer_data->get_data();
 	flexbuffer_data->set_data(data);
 	return ResourceSaver::save(p_save_path + ".res", flexbuffer_data);
