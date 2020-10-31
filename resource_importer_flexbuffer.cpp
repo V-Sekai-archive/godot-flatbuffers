@@ -75,7 +75,5 @@ Error ResourceImporterFlexbuffers::import(const String &p_source_file, const Str
 	Ref<FlexbuffersData> flexbuffer_data;
 	flexbuffer_data.instance();
 	flexbuffer_data->set_flexbuffers(array);
-	Variant data = flexbuffer_data->get_data();
-	flexbuffer_data->set_data(data);
 	return ResourceSaver::save(p_save_path + ".res", flexbuffer_data);
 }
