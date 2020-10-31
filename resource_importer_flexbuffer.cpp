@@ -53,7 +53,7 @@ String ResourceImporterFlexbuffers::get_visible_name() const {
 }
 
 void ResourceImporterFlexbuffers::get_recognized_extensions(List<String> *p_extensions) const {
-	p_extensions->push_back("flexbuffer");
+	p_extensions->push_back("bin");
 }
 
 String ResourceImporterFlexbuffers::get_save_extension() const {
