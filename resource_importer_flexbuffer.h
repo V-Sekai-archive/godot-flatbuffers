@@ -73,27 +73,6 @@ static const Variant flexbuffer_to_variant(flexbuffers::Reference buffer) {
 	if (buffer.IsTypedVector()) {
 		Array array;
 		flexbuffers::TypedVector vector = buffer.AsTypedVector();
-		if (vector[0].IsFloat()) {
-			switch (vector.size()) {
-				case 3: {
-					real_t x = vector[0].AsDouble();
-					real_t y = vector[1].AsDouble();
-					real_t z = vector[2].AsDouble();
-
-					Vector3 vector = Vector3(x, y, z);
-					return Variant(vector);
-				}
-				case 4: {
-					real_t x = vector[0].AsDouble();
-					real_t y = vector[1].AsDouble();
-					real_t z = vector[2].AsDouble();
-					real_t w = vector[3].AsDouble();
-
-					Quat quat = Quat(x, y, z, w);
-					return Variant(quat);
-				}
-			}
-		}
 		for (size_t i = 0; i < vector.size(); ++i) {
 			array.append(flexbuffer_to_variant(vector[i]));
 		}
@@ -109,7 +88,7 @@ static const Variant flexbuffer_to_variant(flexbuffers::Reference buffer) {
 		for (size_t i = 0; i < map.size(); ++i) {
 			dictionary[keys[i].AsString().c_str()] = flexbuffer_to_variant(values[i]);
 		}
-		return Variant(dictionary);
+		return dictionary;
 	}
 
 	return Variant();
