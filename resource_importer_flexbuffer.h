@@ -218,7 +218,7 @@ protected:
 		ClassDB::bind_method(D_METHOD("set_flexbuffers", "flexbuffers"), &FlexbuffersData::set_flexbuffers);
 		ClassDB::bind_method(D_METHOD("get_flexbuffers"), &FlexbuffersData::get_flexbuffers);
 
-		ADD_PROPERTY(PropertyInfo(Variant::NIL, "data", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_NIL_IS_VARIANT), "set_data", "get_data");
+		ADD_PROPERTY(PropertyInfo(Variant::NIL, "data", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_NOEDITOR | PROPERTY_USAGE_INTERNAL), "set_data", "get_data");
 	}
 
 public:
