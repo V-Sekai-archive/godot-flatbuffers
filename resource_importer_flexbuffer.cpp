@@ -33,47 +33,47 @@
 
 #include "resource_importer_flexbuffer.h"
 
-String ResourceImporterFlexbuffer::get_preset_name(int p_idx) const {
+String ResourceImporterFlexbuffers::get_preset_name(int p_idx) const {
 	return String();
 }
 
-void ResourceImporterFlexbuffer::get_import_options(List<ImportOption> *r_options, int p_preset) const {
+void ResourceImporterFlexbuffers::get_import_options(List<ImportOption> *r_options, int p_preset) const {
 }
 
-bool ResourceImporterFlexbuffer::get_option_visibility(const String &p_option, const Map<StringName, Variant> &p_options) const {
+bool ResourceImporterFlexbuffers::get_option_visibility(const String &p_option, const Map<StringName, Variant> &p_options) const {
 	return true;
 }
 
-String ResourceImporterFlexbuffer::get_importer_name() const {
-	return "FLEXBUFFER";
+String ResourceImporterFlexbuffers::get_importer_name() const {
+	return "FLEXBUFFERS";
 }
 
-String ResourceImporterFlexbuffer::get_visible_name() const {
-	return "Flexbuffer";
+String ResourceImporterFlexbuffers::get_visible_name() const {
+	return "Flexbuffers";
 }
 
-void ResourceImporterFlexbuffer::get_recognized_extensions(List<String> *p_extensions) const {
+void ResourceImporterFlexbuffers::get_recognized_extensions(List<String> *p_extensions) const {
 	p_extensions->push_back("flexbuffer");
 }
 
-String ResourceImporterFlexbuffer::get_save_extension() const {
+String ResourceImporterFlexbuffers::get_save_extension() const {
 	return "res";
 }
 
-String ResourceImporterFlexbuffer::get_resource_type() const {
-	return "FlexbufferData";
+String ResourceImporterFlexbuffers::get_resource_type() const {
+	return "FlexbuffersData";
 }
 
-int ResourceImporterFlexbuffer::get_preset_count() const {
+int ResourceImporterFlexbuffers::get_preset_count() const {
 	return 0;
 }
 
-Error ResourceImporterFlexbuffer::import(const String &p_source_file, const String &p_save_path, const Map<StringName, Variant> &p_options, List<String> *r_platform_variants, List<String> *r_gen_files, Variant *r_metadata) {
+Error ResourceImporterFlexbuffers::import(const String &p_source_file, const String &p_save_path, const Map<StringName, Variant> &p_options, List<String> *r_platform_variants, List<String> *r_gen_files, Variant *r_metadata) {
 	FileAccess *file = FileAccess::create(FileAccess::ACCESS_RESOURCES);
 	Error err;
 	String json_string = file->get_file_as_string(p_source_file, &err);
 	ERR_FAIL_COND_V_MSG(err != OK, FAILED, "Can not open flexbuffer file.");
-	Ref<FlexbufferData> flexbuffer_data;
+	Ref<FlexbuffersData> flexbuffer_data;
 	flexbuffer_data.instance();
 	Variant data = flexbuffer_data->get_data();
 	flexbuffer_data->set_data(data);

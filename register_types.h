@@ -31,7 +31,7 @@
 #ifndef RESOURCE_IMPORTER_JSON_REGISTER_TYPES
 #define RESOURCE_IMPORTER_JSON_REGISTER_TYPES
 
-void register_flexbuffer_types();
-void unregister_flexbuffer_types();
+void register_flexbuffers_types();
+void unregister_flexbuffers_types();
 
 #endif

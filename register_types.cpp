@@ -33,12 +33,12 @@
 
 #include "resource_importer_flexbuffer.h"
 
-void register_flexbuffer_types() {
-	ClassDB::register_class<FlexbufferData>();
-	Ref<ResourceImporterFlexbuffer> flexbuffer_data;
-	flexbuffer_data.instance();
-	ResourceFormatImporter::get_singleton()->add_importer(flexbuffer_data);
+void register_flexbuffers_types() {
+	ClassDB::register_class<FlexbuffersData>();
+	Ref<ResourceImporterFlexbuffers> flexbuffers_data;
+	flexbuffers_data.instance();
+	ResourceFormatImporter::get_singleton()->add_importer(flexbuffers_data);
 }
 
-void unregister_flexbuffer_types() {
+void unregister_flexbuffers_types() {
 }

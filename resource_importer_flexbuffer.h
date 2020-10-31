@@ -206,17 +206,17 @@ static Variant flexbuffer_to_variant(Vector<uint8_t> p_buffer) {
 	return flexbuffer_to_variant(flat);
 }
 
-class FlexbufferData : public Resource {
-	GDCLASS(FlexbufferData, Resource);
+class FlexbuffersData : public Resource {
+	GDCLASS(FlexbuffersData, Resource);
 	Variant data;
 
 protected:
 	static void _bind_methods() {
 
-		ClassDB::bind_method(D_METHOD("set_data", "data"), &FlexbufferData::set_data);
-		ClassDB::bind_method(D_METHOD("get_data"), &FlexbufferData::get_data);
-		ClassDB::bind_method(D_METHOD("set_flexbuffer", "json"), &FlexbufferData::set_flexbuffer);
-		ClassDB::bind_method(D_METHOD("get_flexbuffer"), &FlexbufferData::get_flexbuffer);
+		ClassDB::bind_method(D_METHOD("set_data", "data"), &FlexbuffersData::set_data);
+		ClassDB::bind_method(D_METHOD("get_data"), &FlexbuffersData::get_data);
+		ClassDB::bind_method(D_METHOD("set_flexbuffer", "json"), &FlexbuffersData::set_flexbuffers);
+		ClassDB::bind_method(D_METHOD("get_flexbuffer"), &FlexbuffersData::get_flexbuffers);
 
 		ADD_PROPERTY(PropertyInfo(Variant::NIL, "data", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_STORAGE | PROPERTY_USAGE_NIL_IS_VARIANT), "set_data", "get_data");
 		ADD_PROPERTY(PropertyInfo(Variant::POOL_BYTE_ARRAY, "flexbuffer", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_EDITOR), "set_flexbuffer", "get_flexbuffer");
@@ -229,19 +229,19 @@ public:
 	void set_data(Variant p_data) {
 		data = p_data;
 	}
-	Vector<uint8_t> get_flexbuffer() const {
+	Vector<uint8_t> get_flexbuffers() const {
 		return variant_to_flexbuffer(data);
 	}
-	void set_flexbuffer(const Vector<uint8_t> p_buffer) {
+	void set_flexbuffers(const Vector<uint8_t> p_buffer) {
 		Variant new_data = flexbuffer_to_variant(p_buffer);
 		set_data(new_data);
 	}
-	FlexbufferData() {}
-	~FlexbufferData() {}
+	FlexbuffersData() {}
+	~FlexbuffersData() {}
 };
 
-class ResourceImporterFlexbuffer : public ResourceImporter {
-	GDCLASS(ResourceImporterFlexbuffer, ResourceImporter);
+class ResourceImporterFlexbuffers : public ResourceImporter {
+	GDCLASS(ResourceImporterFlexbuffers, ResourceImporter);
 
 public:
 	virtual String get_importer_name() const;
@@ -264,7 +264,7 @@ public:
 			List<String> *r_gen_files = NULL,
 			Variant *r_metadata = NULL);
 
-	ResourceImporterFlexbuffer() {}
-	~ResourceImporterFlexbuffer() {}
+	ResourceImporterFlexbuffers() {}
+	~ResourceImporterFlexbuffers() {}
 };
 #endif // RESOURCE_IMPORTER_LOTTIE
