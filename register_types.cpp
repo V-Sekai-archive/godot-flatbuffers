@@ -30,14 +30,15 @@
 
 #include "register_types.h"
 #include "core/io/resource_importer.h"
-#include "resource_importer_json.h"
 
-void register_json_types() {
-	ClassDB::register_class<JSONData>();
-	Ref<ResourceImporterJSON> json_data;
-	json_data.instance();
-	ResourceFormatImporter::get_singleton()->add_importer(json_data);
+#include "resource_importer_flexbuffer.h"
+
+void register_flexbuffer_types() {
+	ClassDB::register_class<FlexbufferData>();
+	Ref<ResourceImporterFlexbuffer> flexbuffer_data;
+	flexbuffer_data.instance();
+	ResourceFormatImporter::get_singleton()->add_importer(flexbuffer_data);
 }
 
-void unregister_json_types() {
+void unregister_flexbuffer_types() {
 }
