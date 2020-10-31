@@ -53,22 +53,25 @@ static const Variant flexbuffer_to_variant(flexbuffers::Reference buffer) {
 	if (buffer.IsNull())
 		return Variant();
 	if (buffer.IsBool())
-		return Variant(buffer.AsBool());
+		return buffer.AsBool();
 	if (buffer.IsInt())
-		return Variant(buffer.AsInt64());
+		return buffer.AsInt64();
 	if (buffer.IsUInt())
-		return Variant(buffer.AsUInt64());
+		return buffer.AsUInt64();
 	if (buffer.IsFloat())
-		return Variant(buffer.AsFloat());
+		return buffer.AsFloat();
 	if (buffer.IsString())
 		return Variant(buffer.AsString().c_str());
-	if (buffer.IsVector()) {
-		Array array;
-		flexbuffers::Vector vector = buffer.AsVector();
-		for (size_t i = 0; i < vector.size(); ++i) {
-			array.append(flexbuffer_to_variant(vector[i]));
+	if (buffer.IsMap()) {
+		Dictionary dictionary;
+		flexbuffers::Map map = buffer.AsMap();
+		flexbuffers::TypedVector keys = map.Keys();
+		flexbuffers::Vector values = map.Values();
+
+		for (size_t i = 0; i < keys.size(); ++i) {
+			dictionary[keys[i].AsString().c_str()] = flexbuffer_to_variant(values[i]);
 		}
-		return Variant(array);
+		return dictionary;
 	}
 	if (buffer.IsTypedVector()) {
 		Array array;
@@ -76,19 +79,15 @@ static const Variant flexbuffer_to_variant(flexbuffers::Reference buffer) {
 		for (size_t i = 0; i < vector.size(); ++i) {
 			array.append(flexbuffer_to_variant(vector[i]));
 		}
-		return Variant(array);
+		return array;
 	}
-	if (buffer.IsMap()) {
-		Dictionary dictionary;
-
-		flexbuffers::Map map = buffer.AsMap();
-		flexbuffers::TypedVector keys = map.Keys();
-		flexbuffers::Vector values = map.Values();
-
-		for (size_t i = 0; i < map.size(); ++i) {
-			dictionary[keys[i].AsString().c_str()] = flexbuffer_to_variant(values[i]);
+	if (buffer.IsVector()) {
+		Array array;
+		flexbuffers::Vector vector = buffer.AsVector();
+		for (size_t i = 0; i < vector.size(); ++i) {
+			array.append(flexbuffer_to_variant(vector[i]));
 		}
-		return dictionary;
+		return array;
 	}
 
 	return Variant();
