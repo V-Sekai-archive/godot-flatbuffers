@@ -42,7 +42,6 @@
 #include "core/io/resource_saver.h"
 #include "core/os/copymem.h"
 
-
 #include "thirdparty/flatbuffers/include/flatbuffers/flexbuffers.h"
 
 #include "core/io/file_access_pack.h"
@@ -50,18 +49,24 @@
 #include "resource_importer_flexbuffer.h"
 
 static const Variant flexbuffer_to_variant(flexbuffers::Reference buffer) {
-	if (buffer.IsNull())
+	if (buffer.IsNull()) {
 		return Variant();
-	if (buffer.IsBool())
+	}
+	if (buffer.IsBool()) {
 		return buffer.AsBool();
-	if (buffer.IsInt())
+	}
+	if (buffer.IsInt()) {
 		return buffer.AsInt64();
-	if (buffer.IsUInt())
+	}
+	if (buffer.IsUInt()) {
 		return buffer.AsUInt64();
-	if (buffer.IsFloat())
+	}
+	if (buffer.IsFloat()) {
 		return buffer.AsFloat();
-	if (buffer.IsString())
+	}
+	if (buffer.IsString()) {
 		return Variant(buffer.AsString().c_str());
+	}
 	if (buffer.IsMap()) {
 		Dictionary dictionary;
 		flexbuffers::Map map = buffer.AsMap();
