@@ -28,10 +28,10 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                */
 /*************************************************************************/
 
-#ifndef RESOURCE_IMPORTER_JSON_REGISTER_TYPES
-#define RESOURCE_IMPORTER_JSON_REGISTER_TYPES
+#ifndef RESOURCE_IMPORTER_FLATBUFFERS_TYPES
+#define RESOURCE_IMPORTER_FLATBUFFERS_TYPES
 
-void register_flexbuffers_types();
-void unregister_flexbuffers_types();
+void register_flatbuffers_types();
+void unregister_flatbuffers_types();
 
 #endif
