@@ -96,7 +96,7 @@ void FlatbuffersData::_bind_methods() {
 	ADD_PROPERTY(PropertyInfo(Variant::NIL, "_data", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_NO_EDITOR | PROPERTY_USAGE_INTERNAL), "set_data", "get_data");
 }
 
-static Variant flatbuffer_to_variant_buffer(Vector<uint8_t> p_buffer) {
+static Variant flatbuffer_buffer_to_variant(Vector<uint8_t> p_buffer) {
 	std::vector<uint8_t> std_vector;
 	std_vector.resize(p_buffer.size());
 	memcpy(std_vector.data(), p_buffer.ptr(), p_buffer.size());
